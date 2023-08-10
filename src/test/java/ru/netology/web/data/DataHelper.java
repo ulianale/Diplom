@@ -4,12 +4,9 @@ import lombok.Value;
 
 import static ru.netology.web.data.DataGenerator.*;
 
-
 public class DataHelper {
     private DataHelper() {
     }
-    //public static DataGenerator dataGenerator = new DataGenerator();
-
 
     @Value
     public static class CardInfo {
