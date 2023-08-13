@@ -20,7 +20,7 @@ public class DataBaseTests {
     }
 
     @AfterEach
-    public void teardrop() {
+    public void tearDown() {
         cleanDatabase();
     }
 
