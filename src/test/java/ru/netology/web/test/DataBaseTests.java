@@ -65,7 +65,7 @@ public class DataBaseTests {
 
     // проверка на правильное заполнение таблицы order_entity
 
-    @Test           // покупка по карте должна добавляться в поле payment_id
+    @Test           // данные о покупке по карте должны добавляться в поле payment_id
     void shouldAddCorrectPaymentInfoInOrderTable() {
         var paymentPage = new MainPage().paymentPage();
         var info = DataHelper.getApprovedField();
@@ -74,7 +74,7 @@ public class DataBaseTests {
         assertEquals(SQLHelper.getPaymentTableInfo().getTransaction_id(), SQLHelper.getOrderTableInfo().getPayment_id());
     }
 
-    @Test           // покупка в кредит должна добавляться в поле credit_id
+    @Test           // данные о покупке в кредит должны добавляться в поле credit_id
     void shouldAddCorrectCreditInfoInOrderTable() {
         var paymentPage = new MainPage().creditPage();
         var info = DataHelper.getApprovedField();
