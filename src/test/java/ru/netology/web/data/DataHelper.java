@@ -1,5 +1,6 @@
 package ru.netology.web.data;
 
+import lombok.Data;
 import lombok.Value;
 
 import static ru.netology.web.data.DataGenerator.*;
@@ -16,6 +17,32 @@ public class DataHelper {
         String name;
         String cvc;
     }
+
+    @Data
+    public static class PaymentEntity {
+        String id;
+        String amount;
+        String created;
+        String status;
+        String transaction_id;
+    }
+
+    @Data
+    public static class CreditEntity {
+        String id;
+        String bank_id;
+        String created;
+        String status;
+    }
+
+    @Data
+    public static class OrderEntity {
+        String id;
+        String created;
+        String credit_id;
+        String payment_id;
+    }
+
     //  card number
 
     public static CardInfo getApprovedField() {

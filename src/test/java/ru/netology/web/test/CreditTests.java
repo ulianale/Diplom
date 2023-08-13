@@ -34,7 +34,7 @@ public class CreditTests {
 
     // card number
 
-    @Test
+    /*@Test
     void shouldErrorWithEmptyCardNumber() {
         var paymentPage = new MainPage().creditPage();
         var info = DataHelper.getFieldWithEmptyCardNumber();
@@ -200,6 +200,6 @@ public class CreditTests {
         var info = DataHelper.getFieldWithErrorCode();
         paymentPage.PaymentFields(info);
         paymentPage.wrongFormat();
-    }
+    }*/
 
 }

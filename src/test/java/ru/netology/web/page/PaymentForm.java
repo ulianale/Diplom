@@ -18,6 +18,8 @@ public class PaymentForm {
     private final SelenideElement name = $$(".input__control").get(3);
     private final SelenideElement cvc = $$(".input__control").get(4);
     private final SelenideElement button = $$(".button").get(2);
+    private final SelenideElement notification = $(".notification");
+
 
     private final SelenideElement success = $(withText("Операция одобрена Банком."));
     private final SelenideElement error = $(withText("Ошибка! Банк отказал в проведении операции."));
@@ -33,6 +35,10 @@ public class PaymentForm {
         name.setValue(info.getName());
         cvc.setValue(info.getCvc());
         button.click();
+    }
+
+    public void showAnyNotification() {
+        notification.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
     public void successNotification() {
