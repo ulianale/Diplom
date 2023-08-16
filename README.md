@@ -28,28 +28,33 @@
    `docker-compose up`
 2. Открываем новую вкладку терминала и запускаем приложение (jar файл) командой:
 
-   *для MySQL:*
+   * *для MySQL:*
    
    `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`
 
-   *для PostgreSQL:*
-    
-    перед запуском необходимо изменить код:
+   * *для PostgreSQL:*
+  
+   `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
+      
+    **Важно!!!**
+   перед запуском для *PostgreSQL* необходимо изменить код:
 
-    * в application.properties
+     в application.properties
    
       ![](./png/1.png)
-    * в ru/netology/web/data/SQLHelper
+   
+     в ru/netology/web/data/SQLHelper
 
       ![](./png/2.png)
    
 
-   `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
+   
 
 4. Открываем новую вкладку терминала и запускаем автотесты командой:
    
    `./gradlew clean test`
 5. Для формирования и отображения отчета Allure вводим команду:
+
    `./gradlew allureserve`
     
     Отчет открывается автоматически в браузере после прогона тестов. 
