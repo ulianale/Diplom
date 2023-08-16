@@ -1,8 +1,8 @@
 package ru.netology.web.test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.data.SQLHelper;
 import ru.netology.web.page.MainPage;
@@ -13,8 +13,19 @@ import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.web.data.SQLHelper.cleanDatabase;
 
 public class DataBaseTests {
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
+
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         //Configuration.holdBrowserOpen = true;
         open("http://localhost:8080");
     }
@@ -65,7 +76,8 @@ public class DataBaseTests {
 
     // проверка на правильное заполнение таблицы order_entity
 
-    @Test           // данные о покупке по карте должны добавляться в поле payment_id
+    @Test
+        // данные о покупке по карте должны добавляться в поле payment_id
     void shouldAddCorrectPaymentInfoInOrderTable() {
         var paymentPage = new MainPage().paymentPage();
         var info = DataHelper.getApprovedField();
@@ -74,7 +86,8 @@ public class DataBaseTests {
         assertEquals(SQLHelper.getPaymentTableInfo().getTransaction_id(), SQLHelper.getOrderTableInfo().getPayment_id());
     }
 
-    @Test           // данные о покупке в кредит должны добавляться в поле credit_id
+    @Test
+        // данные о покупке в кредит должны добавляться в поле credit_id
     void shouldAddCorrectCreditInfoInOrderTable() {
         var paymentPage = new MainPage().creditPage();
         var info = DataHelper.getApprovedField();
@@ -82,6 +95,5 @@ public class DataBaseTests {
         paymentPage.showAnyNotification();
         assertEquals(SQLHelper.getCreditTableInfo().getBank_id(), SQLHelper.getOrderTableInfo().getCredit_id());
     }
-
 
 }

@@ -30,11 +30,11 @@
 
    *для MySQL:*
    
-   `java -jar .artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`
+   `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`
 
    *для PostgreSQL:*
 
-   `java -jar .artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
+   `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
 
 3. Запускаем автотесты, нажав на зеленый треугольник в IDEA
 
