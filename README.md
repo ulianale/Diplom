@@ -38,10 +38,10 @@
 
     * в application.properties
    
-      ![](/Users/veraalisova/Desktop/Снимок экрана 2023-08-16 в 18.05.27.png)
+      ![](./png/1.png)
     * в ru/netology/web/data/SQLHelper
 
-      ![](/Users/veraalisova/Desktop/Снимок экрана 2023-08-16 в 18.15.26.png)
+      ![](./png/2.png)
    
 
    `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
