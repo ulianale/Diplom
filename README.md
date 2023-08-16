@@ -33,10 +33,27 @@
    `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app`
 
    *для PostgreSQL:*
+    
+    перед запуском необходимо изменить код:
+
+    * в application.properties
+   
+      ![](/Users/veraalisova/Desktop/Снимок экрана 2023-08-16 в 18.05.27.png)
+    * в ru/netology/web/data/SQLHelper
+
+      ![](/Users/veraalisova/Desktop/Снимок экрана 2023-08-16 в 18.15.26.png)
+   
 
    `java -jar ./artifacts/aqa-shop.jar -P:jdbc.url=jdbc:postgresql//localhost:5432/app`
 
-3. Запускаем автотесты, нажав на зеленый треугольник в IDEA
+4. Открываем новую вкладку терминала и запускаем автотесты командой:
+   
+   `./gradlew clean test`
+5. Для формирования и отображения отчета Allure вводим команду:
+   `./gradlew allureserve`
+    
+    Отчет открывается автоматически в браузере после прогона тестов. 
+    Останавливаем Allure, нажав `Ctrl+C`
 
 ## Завершение работы приложения, остановка и удаление контейнера
 1. В терминале, где был запущен jar-файл, нажимаем `Ctrl+C`
