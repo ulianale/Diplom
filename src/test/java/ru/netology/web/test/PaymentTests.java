@@ -111,7 +111,7 @@ public class PaymentTests {
         var paymentPage = new MainPage().paymentPage();
         var info = DataHelper.getFieldWithPrevMonth();
         paymentPage.PaymentFields(info);
-        paymentPage.cardExpired();
+        paymentPage.wrongExpiryDate();
     }
 
     // year
