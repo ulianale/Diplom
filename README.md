@@ -19,6 +19,8 @@
 * [Google Chrome](https://www.google.ru/chrome/)
 * [Docker](https://www.docker.com)
 
+*Важно!!!  В зависимости от версии Google Chrome установленной на компьютер, в файле build.gradlew возможно понадобится изменить версию Selenide, так как тесты могут падать из-за ошибки несоответствия ChromeDriver и версии браузера*
+
 2. Склонировать [репозиторий](https://github.com/ulianale/Diplom) командой `git clone https://github.com/ulianale/Diplom`
 и открыть его в IDEA
 
