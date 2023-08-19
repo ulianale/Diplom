@@ -7,6 +7,9 @@ import ru.netology.web.data.DataHelper;
 import ru.netology.web.data.SQLHelper;
 import ru.netology.web.page.MainPage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -94,6 +97,44 @@ public class DataBaseTests {
         paymentPage.PaymentFields(info);
         paymentPage.showAnyNotification();
         assertEquals(SQLHelper.getCreditTableInfo().getBank_id(), SQLHelper.getOrderTableInfo().getCredit_id());
+    }
+
+    // проверка на добавление корректной даты и времени в таблицу
+
+    @Test
+    void shouldAddCorrectDateTimeInPaymentTable() {
+        var date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        var paymentPage = new MainPage().paymentPage();
+        var info = DataHelper.getApprovedField();
+        paymentPage.PaymentFields(info);
+        paymentPage.showAnyNotification();
+        var dateInTable = SQLHelper.getPaymentTableInfo().getCreated();
+        var index = dateInTable.indexOf(".");
+        assertEquals(date, dateInTable.substring(0, index - 3));
+    }
+
+    @Test
+    void shouldAddCorrectDateTimeInCreditTable() {
+        var date = LocalDateTime.now().plusSeconds(5).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        var paymentPage = new MainPage().creditPage();
+        var info = DataHelper.getApprovedField();
+        paymentPage.PaymentFields(info);
+        paymentPage.showAnyNotification();
+        var dateInTable = SQLHelper.getCreditTableInfo().getCreated();
+        var index = dateInTable.indexOf(".");
+        assertEquals(date, dateInTable.substring(0, index - 3));
+    }
+
+    // проверка на соответствие цены тура на странице приложения и в базе данных
+
+    @Test
+    void shouldAddCorrectPriceInPaymentTable() {
+        var paymentPage = new MainPage().paymentPage();
+        var price = paymentPage.getPrice();
+        var info = DataHelper.getApprovedField();
+        paymentPage.PaymentFields(info);
+        paymentPage.showAnyNotification();
+        assertEquals(price, SQLHelper.getPaymentTableInfo().getAmount());
     }
 
 }

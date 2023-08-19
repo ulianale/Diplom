@@ -19,6 +19,7 @@ public class PaymentForm {
     private final SelenideElement cvc = $$(".input__control").get(4);
     private final SelenideElement button = $$(".button").get(2);
     private final SelenideElement notification = $(".notification");
+    private final SelenideElement price = $$(".list__item").get(3);
 
 
     private final SelenideElement success = $(withText("Операция одобрена Банком."));
@@ -38,15 +39,15 @@ public class PaymentForm {
     }
 
     public void showAnyNotification() {
-        notification.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        notification.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     public void successNotification() {
-        success.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        success.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     public void errorNotification() {
-        error.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        error.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     public void wrongFormat() {
@@ -64,6 +65,10 @@ public class PaymentForm {
     public void emptyField() {
         emptyField.shouldBe(Condition.visible);
         wrongFormat.shouldBe(Condition.hidden);
+    }
+
+    public String getPrice() {
+        return price.text().replaceAll("\\D", "");
     }
 
 }
